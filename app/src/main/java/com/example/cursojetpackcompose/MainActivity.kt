@@ -2,12 +2,14 @@ package com.example.cursojetpackcompose
 
 import android.R.attr.top
 import android.os.Bundle
+import android.widget.Space
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
@@ -22,6 +24,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
@@ -30,6 +35,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
@@ -54,6 +60,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -583,8 +590,67 @@ fun MyLazyRowWithImageWeb(){
 }
 
 @Composable
+fun MyLazyVerticalGrid(){
+    val elements = List(20){"Element N: ${it +1}"} /*Me genera una lista de 20 elementos*/
+
+    LazyVerticalGrid(
+        //columns = GridCells.Adaptive(120.dp), //Columnas de 120dp establecidas como ancho minimo que debe de tener una celda (variable con el ancho minimo de la celda)
+        columns = GridCells.Fixed(2), //Celdas fijas
+        modifier = Modifier.fillMaxSize().padding(16.dp),
+        verticalArrangement = Arrangement.spacedBy(16.dp),
+        horizontalArrangement = Arrangement.spacedBy(16.dp)
+    ){
+        items(elements){ myCurrentElement ->
+            //Esta funcion es personalizada a la cual le paso las lista de elementos para renderizarlos en la vista
+            GridItem(element = myCurrentElement)
+        }
+    }
+}
+
+
+
+
+@Composable
+fun GridItem(element: String) {
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(4.dp)
+            .background(
+                color = MaterialTheme.colorScheme.primary,
+                shape = RoundedCornerShape(10.dp)
+            ),
+        contentAlignment = Alignment.Center
+
+    ) {
+
+        Column(
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+
+            Icon(
+                imageVector = Icons.Default.Star,
+                contentDescription = "Cell icon",
+                tint = MaterialTheme.colorScheme.tertiary,
+                modifier = Modifier.size(60.dp)
+            )
+
+            Spacer(modifier = Modifier.height(10.dp))
+
+
+            Text(
+                text = element,
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.padding(top = 8.dp)
+            )
+        }
+    }
+}
+
+@Composable
 fun Components(){
-    MyLazyRowWithImageWeb()
+    MyLazyVerticalGrid()
 }
 
 @Preview(showBackground = true)
