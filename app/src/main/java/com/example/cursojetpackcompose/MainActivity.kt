@@ -9,6 +9,7 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -20,6 +21,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
@@ -30,6 +32,8 @@ import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
@@ -55,6 +59,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
+import coil.compose.AsyncImage
 import com.example.cursojetpackcompose.ui.theme.CursoJetpackComposeTheme
 
 class MainActivity : ComponentActivity() {
@@ -451,8 +456,135 @@ fun MyLazyColumn(){
 }
 
 @Composable
+fun MyLazyRowWithText(){
+    val itemList = List(100){"Element N: $it"} /*Me genera una lista de 100 elementos*/
+
+    LazyRow(
+        modifier = Modifier.fillMaxSize().padding(16.dp),
+        horizontalArrangement = Arrangement.spacedBy(16.dp)
+        ){
+        items(itemList){ element ->
+            Card(
+                modifier = Modifier.size(100.dp),
+                shape = RoundedCornerShape(10.dp),
+                colors = CardDefaults.cardColors(
+                    containerColor = MaterialTheme.colorScheme.primary
+                )
+            ) {
+                Column(
+                    modifier = Modifier.fillMaxSize().padding(8.dp),
+                    verticalArrangement = Arrangement.Center,
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Text(
+                        text = element
+                    )
+                }
+            }
+        }
+    }
+
+
+}
+
+@Composable
+fun MyLazyRowWithImage(){
+    val listImages = listOf(
+        R.drawable.image1,
+        R.drawable.image2,
+        R.drawable.image3,
+        R.drawable.image4,
+        R.drawable.image5,
+        R.drawable.image6,
+        R.drawable.image7,
+        R.drawable.image8,
+        R.drawable.image9
+    )
+
+    LazyRow(
+        modifier = Modifier.fillMaxWidth().padding(16.dp),
+        horizontalArrangement = Arrangement.spacedBy(16.dp) //Distancia entre elementos
+    ) {
+        items(listImages) { image ->
+            Card(
+                modifier = Modifier.size(100.dp),
+                shape = RoundedCornerShape(10.dp),
+            ) {
+                Column(
+                    modifier = Modifier.fillMaxSize().padding(4.dp),
+                    verticalArrangement = Arrangement.Center,
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+
+                    Image(
+                        painter = painterResource(id = image),
+                        contentDescription = "Image de paisaje",
+                        modifier = Modifier.size(100.dp).clip(RoundedCornerShape(10.dp)),
+                        contentScale = ContentScale.Crop
+                    )
+
+                    Text(
+                        text = image.toString(),
+                        modifier = Modifier.padding(top = 8.dp)
+                    )
+                }
+            }
+
+        }
+    }
+}
+
+@Composable
+fun MyLazyRowWithImageWeb(){
+    val listImageUrls = listOf(
+        "https://cdn.pixabay.com/photo/2016/05/25/13/55/horses-1414889_960_720.jpg",
+        "https://cdn.pixabay.com/photo/2015/04/10/01/41/fox-715588_960_720.jpg",
+        "https://cdn.pixabay.com/photo/2023/01/10/16/23/hedgehog-7710053_960_720.jpg",
+        "https://cdn.pixabay.com/photo/2016/05/25/13/55/horses-1414889_1280.jpg",
+        "https://cdn.pixabay.com/photo/2021/04/05/14/54/meerkats-6153748_960_720.jpg",
+        "https://cdn.pixabay.com/photo/2021/05/14/21/49/elephants-6254556_960_720.jpg",
+        "https://cdn.pixabay.com/photo/2021/04/30/14/53/deer-6219100_960_720.jpg",
+        "https://cdn.pixabay.com/photo/2020/02/11/09/22/bear-4838870_960_720.jpg",
+        "https://cdn.pixabay.com/photo/2018/05/24/17/35/parrots-3427188_960_720.jpg",
+    )
+
+    LazyRow(
+        modifier = Modifier.fillMaxWidth().padding(16.dp),
+        horizontalArrangement = Arrangement.spacedBy(16.dp) //Distancia entre elementos
+    ) {
+        items(listImageUrls) { imageUrl ->
+            Card(
+                modifier = Modifier.size(100.dp),
+                shape = RoundedCornerShape(10.dp),
+            ) {
+                Column(
+                    modifier = Modifier.fillMaxSize().padding(4.dp),
+                    verticalArrangement = Arrangement.Center,
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+
+                    //Asyncono porque descarga las imagenes desde un hilo por detras del hilo principal
+                    AsyncImage(
+                        model = imageUrl,
+                        contentDescription = "Image de paisaje",
+                        modifier = Modifier.size(100.dp).clip(RoundedCornerShape(10.dp)),
+                        contentScale = ContentScale.Crop
+                    )
+
+                    Text(
+                        text = imageUrl.toString(),
+                        modifier = Modifier.padding(top = 8.dp)
+                    )
+                }
+            }
+
+        }
+    }
+}
+
+@Composable
 fun Components(){
-    MyLazyColumn()
+    MyLazyRowWithImageWeb()
 }
 
 @Preview(showBackground = true)
