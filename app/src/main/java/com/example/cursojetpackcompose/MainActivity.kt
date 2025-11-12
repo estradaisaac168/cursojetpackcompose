@@ -64,6 +64,7 @@ import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
 import coil.compose.AsyncImage
+import com.example.cursojetpackcompose.components.MyElevationCard
 import com.example.cursojetpackcompose.components.MySimpleCard
 import com.example.cursojetpackcompose.components.ReusableText
 import com.example.cursojetpackcompose.ui.theme.CursoJetpackComposeTheme
@@ -702,7 +703,7 @@ fun GridItem(element: String) {
 
 @Composable
 fun Components(){
-    MySimpleCard()
+    MyElevationCard()
 }
 
 @Preview(showBackground = true)
