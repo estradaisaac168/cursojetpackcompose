@@ -1,4 +1,4 @@
-package com.example.cursojetpackcompose
+package com.example.cursojetpackcompose.components
 
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
