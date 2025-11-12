@@ -22,9 +22,11 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyHorizontalGrid
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.items
@@ -61,6 +63,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -608,6 +611,59 @@ fun MyLazyVerticalGrid(){
 }
 
 
+@Composable
+fun MyLazyHorizontalGrid(){
+    val elements = List(20){"Element N: ${it +1}"} /*Me genera una lista de 20 elementos*/
+
+    LazyHorizontalGrid(
+        rows = GridCells.Adaptive(100.dp), //Adaptative hace referencia a la altura
+        //rows = GridCells.Fixed(4), //Celdas fijas (Filas)
+        modifier = Modifier.fillMaxSize().padding(16.dp),
+        verticalArrangement = Arrangement.spacedBy(16.dp),
+        horizontalArrangement = Arrangement.spacedBy(16.dp)
+    ){
+        items(elements){ myCurrentElement ->
+            //Esta funcion es personalizada a la cual le paso las lista de elementos para renderizarlos en la vista
+            GridItemHorizontal(element = myCurrentElement)
+        }
+    }
+}
+
+@Composable
+fun GridItemHorizontal(element: String) {
+    Box(
+        modifier = Modifier
+            .width(120.dp)
+            .height(120.dp)
+            .padding(4.dp)
+            .clip(RoundedCornerShape(10.dp))
+            .background(
+                color = MaterialTheme.colorScheme.primaryContainer
+            )
+            .border(
+                2.dp,
+                color = MaterialTheme.colorScheme.primary,
+                shape = RoundedCornerShape(10.dp)
+            ),
+        contentAlignment = Alignment.Center
+
+    ) {
+
+        Column(
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+
+            Text(
+                text = element,
+                style = MaterialTheme.typography.bodyMedium,
+                fontWeight = FontWeight.Bold,
+                textAlign = TextAlign.Center,
+                color = MaterialTheme.colorScheme.onPrimaryContainer
+            )
+        }
+    }
+}
 
 
 @Composable
@@ -650,7 +706,7 @@ fun GridItem(element: String) {
 
 @Composable
 fun Components(){
-    MyLazyVerticalGrid()
+    MyLazyHorizontalGrid()
 }
 
 @Preview(showBackground = true)
