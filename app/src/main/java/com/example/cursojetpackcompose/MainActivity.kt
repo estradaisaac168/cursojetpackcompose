@@ -19,6 +19,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -415,8 +417,42 @@ fun MyConstraintLayout(){
 
 
 @Composable
+fun MyLazyColumn(){
+    val itemList = List(10){"Element N: $it"} /*Me genera una lista de 100 elementos*/
+
+    LazyColumn(
+        modifier = Modifier.fillMaxSize().padding(16.dp),
+        verticalArrangement = Arrangement.spacedBy(16.dp)
+    ){
+
+        //Funcion que se ejecuta una vez para generar el header de la lista
+        item{
+            Text(
+                text = "Header de mi lista",
+                style = MaterialTheme.typography.titleLarge
+            )
+        }
+
+        //Esta funcion viene con lazycolumn, nos devuelve una funcion anonima cada vez que itera sobre la lista
+        items(itemList){ element ->
+            Text(
+                text = element
+            )
+        }
+
+        //Funcion que se ejecuta una vez para generar el header de la lista
+        item{
+            Text(
+                text = "Footer de mi lista",
+                style = MaterialTheme.typography.titleLarge
+            )
+        }
+    }
+}
+
+@Composable
 fun Components(){
-    MyConstraintLayout()
+    MyLazyColumn()
 }
 
 @Preview(showBackground = true)
