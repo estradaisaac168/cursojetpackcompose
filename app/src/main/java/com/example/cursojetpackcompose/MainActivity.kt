@@ -68,6 +68,10 @@ import com.example.cursojetpackcompose.components.MyElevationCard
 import com.example.cursojetpackcompose.components.MyOutlinedCard
 import com.example.cursojetpackcompose.components.MySimpleCard
 import com.example.cursojetpackcompose.components.ReusableText
+import com.example.cursojetpackcompose.states.MyScreen
+import com.example.cursojetpackcompose.states.Remember
+import com.example.cursojetpackcompose.states.RememberSaveable
+import com.example.cursojetpackcompose.states.StateHoisting
 import com.example.cursojetpackcompose.ui.theme.CursoJetpackComposeTheme
 
 class MainActivity : ComponentActivity() {
@@ -84,7 +88,7 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Components(){
-    MyOutlinedCard()
+    MyScreen()
 }
 
 @Preview(showBackground = true)
