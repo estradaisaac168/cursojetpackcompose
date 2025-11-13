@@ -7,6 +7,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.cursojetpackcompose.states.CounterScreen
+import com.example.cursojetpackcompose.states.MutableStateListOf
 import com.example.cursojetpackcompose.states.MyDerivedState
 import com.example.cursojetpackcompose.states.MyScreen
 import com.example.cursojetpackcompose.ui.theme.CursoJetpackComposeTheme
@@ -25,7 +26,7 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Components(){
-    MyDerivedState()
+    MutableStateListOf()
 }
 
 @Preview(showBackground = true)
