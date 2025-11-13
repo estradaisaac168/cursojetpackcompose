@@ -6,11 +6,14 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.cursojetpackcompose.states.CounterLifeCycle
 import com.example.cursojetpackcompose.states.CounterScreen
 import com.example.cursojetpackcompose.states.MutableStateListOf
 import com.example.cursojetpackcompose.states.MutableStateListOfSaver
+import com.example.cursojetpackcompose.states.MutableStateMapOf
 import com.example.cursojetpackcompose.states.MyDerivedState
 import com.example.cursojetpackcompose.states.MyScreen
+import com.example.cursojetpackcompose.states.Recomposition
 import com.example.cursojetpackcompose.ui.theme.CursoJetpackComposeTheme
 
 class MainActivity : ComponentActivity() {
@@ -27,7 +30,7 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Components(){
-    MutableStateListOfSaver()
+    CounterLifeCycle()
 }
 
 @Preview(showBackground = true)
