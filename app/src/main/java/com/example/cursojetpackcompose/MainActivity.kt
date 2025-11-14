@@ -14,6 +14,7 @@ import com.example.cursojetpackcompose.states.MutableStateMapOf
 import com.example.cursojetpackcompose.states.MyDerivedState
 import com.example.cursojetpackcompose.states.MyScreen
 import com.example.cursojetpackcompose.states.Recomposition
+import com.example.cursojetpackcompose.states.TaskListScreen
 import com.example.cursojetpackcompose.ui.theme.CursoJetpackComposeTheme
 
 class MainActivity : ComponentActivity() {
@@ -30,7 +31,7 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Components(){
-    CounterLifeCycle()
+    TaskListScreen()
 }
 
 @Preview(showBackground = true)
