@@ -7,6 +7,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.cursojetpackcompose.SecondaryEffect.UserDataScreen
+import com.example.cursojetpackcompose.seccion15.CenterAlignedTopBar
 import com.example.cursojetpackcompose.seccion15.MyScaffoldScreen
 import com.example.cursojetpackcompose.seccion15.ScaffoldScreenTopAppBar
 import com.example.cursojetpackcompose.states.CounterLifeCycle
@@ -34,7 +35,7 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Components(){
-    ScaffoldScreenTopAppBar()
+    CenterAlignedTopBar()
 }
 
 @Preview(showBackground = true)
