@@ -9,6 +9,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.example.cursojetpackcompose.SecondaryEffect.UserDataScreen
 import com.example.cursojetpackcompose.seccion15.BottomAppBar
 import com.example.cursojetpackcompose.seccion15.CenterAlignedTopBar
+import com.example.cursojetpackcompose.seccion15.ExtendedFloatingActionButton
 import com.example.cursojetpackcompose.seccion15.FloatingActionButton
 import com.example.cursojetpackcompose.seccion15.MyScaffoldScreen
 import com.example.cursojetpackcompose.seccion15.ScaffoldScreenTopAppBar
@@ -37,7 +38,7 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Components(){
-    FloatingActionButton()
+    ExtendedFloatingActionButton()
 }
 
 @Preview(showBackground = true)
