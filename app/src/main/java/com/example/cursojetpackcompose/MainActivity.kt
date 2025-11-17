@@ -13,6 +13,7 @@ import com.example.cursojetpackcompose.seccion15.ExtendedFloatingActionButton
 import com.example.cursojetpackcompose.seccion15.FloatingActionButton
 import com.example.cursojetpackcompose.seccion15.MyScaffoldScreen
 import com.example.cursojetpackcompose.seccion15.NavigationBar
+import com.example.cursojetpackcompose.seccion15.NavigationRail
 import com.example.cursojetpackcompose.seccion15.ScaffoldScreenTopAppBar
 import com.example.cursojetpackcompose.states.CounterLifeCycle
 import com.example.cursojetpackcompose.states.CounterScreen
@@ -39,7 +40,7 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Components(){
-    NavigationBar()
+    NavigationRail()
 }
 
 @Preview(showBackground = true)
