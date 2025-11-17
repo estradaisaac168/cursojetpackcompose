@@ -46,6 +46,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
+import com.example.cursojetpackcompose.seccion15.drawer.DrawerContent
+import com.example.cursojetpackcompose.seccion15.drawer.MainScaffold
 import kotlinx.coroutines.launch
 
 /**
@@ -74,119 +76,31 @@ fun NavigationDrawer(){
 
     ModalNavigationDrawer(
         drawerContent = {
-            ModalDrawerSheet{
-                Column(
-                    modifier = Modifier.fillMaxWidth().padding(16.dp)
-                ){
-                    //Avatar
-                    Icon(
-                        imageVector = Icons.Default.AccountCircle,
-                        contentDescription = "Avatar",
-                        modifier = Modifier.size(72.dp).clip(CircleShape),
-                        tint = MaterialTheme.colorScheme.primary
-                    )
+            //ModalDrawer
+            DrawerContent(
+                drawerLabelItems,
+                drawerIcons,
+                selectedItem,
+                onItemClick = { index->
+                    selectedItem = index
 
-                    Text(
-                        text = "Bienvenido",
-                        style = MaterialTheme.typography.titleMedium
-                    )
+                    scope.launch {
+                        drawerState.close()
+                    }
 
-                    Spacer(modifier = Modifier.height(16.dp))
-
-                    //Email del usuario
-                    Text(
-                        "usuario@gmail.com",
-                        style = MaterialTheme.typography.bodyMedium,
-                        color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
-                    )
                 }
-
-                HorizontalDivider()
-
-                Text(
-                    text = "Menu",
-                    style = MaterialTheme.typography.titleMedium,
-                    modifier = Modifier.padding(16.dp)
-                )
-
-                Spacer(modifier = Modifier.height(16.dp))
-
-                drawerLabelItems.forEachIndexed { index, item ->
-                    //Me devuelve la posicion del item
-                    NavigationDrawerItem(
-                        onClick = {
-                            selectedItem = index
-                            scope.launch {
-                                drawerState.close()
-                            }
-                        },
-                        selected = selectedItem == index,
-                        icon = {
-                            Icon(
-                                drawerIcons[index],
-                                contentDescription = item
-                            )
-                        },
-                        label = {
-                            Text(text = item)
-                        },
-                        modifier = Modifier.padding(NavigationDrawerItemDefaults.ItemPadding),
-                        badge = {
-                            if(index == 0){
-                                Badge{
-                                    Text("4")
-                                }
-                            }
-                        },
-                        shape = RoundedCornerShape(16.dp)
-                    )
-                }
-            }
+            )
         },
         drawerState = drawerState, //Con esto identificamos si esta abierto o cerrado
         gesturesEnabled = true, //Habilitar que se abra el drawer deslizando el dedo
     ) {
-        Scaffold(
-            topBar = {
-                TopAppBar(
-                    title = {
-                        Text(
-                            text = "Navigation Drawer",
-                            style = MaterialTheme.typography.titleLarge
-                        )
-                    },
-                    navigationIcon = {
-                        IconButton(
-                            onClick = {
-                                scope.launch {
-                                    drawerState.open()
-                                }
-                            }
-                        ){
-                            Icon(
-                                imageVector = Icons.Default.Menu,
-                                contentDescription = "Menu"
-                            )
-                        }
-                    },
-                    colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
-                        containerColor = MaterialTheme.colorScheme.primary,
-                        titleContentColor = MaterialTheme.colorScheme.onPrimary,
-                        navigationIconContentColor = MaterialTheme.colorScheme.onPrimary,
-                        actionIconContentColor = MaterialTheme.colorScheme.onPrimary
-                    )
-                )
-            },
-            containerColor = MaterialTheme.colorScheme.surface
-        ) {
-            paddingValues -> //Me devuelve Padding interno
-            Box(
-                modifier = Modifier.fillMaxSize().padding(paddingValues), //Le meto el padding interno
-                contentAlignment = Alignment.Center
-            ){
-                Text(text = "Seccion: ${drawerLabelItems[selectedItem]}")
+        MainScaffold(
+            selectedSection = drawerLabelItems[selectedItem],
+            onMenuClick = {
+                scope.launch {
+                    drawerState.open()
+                }
             }
-        }
+        )
     }
-
 }
