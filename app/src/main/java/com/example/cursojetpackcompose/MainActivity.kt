@@ -8,6 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.cursojetpackcompose.SecondaryEffect.UserDataScreen
 import com.example.cursojetpackcompose.seccion15.MyScaffoldScreen
+import com.example.cursojetpackcompose.seccion15.ScaffoldScreenTopAppBar
 import com.example.cursojetpackcompose.states.CounterLifeCycle
 import com.example.cursojetpackcompose.states.CounterScreen
 import com.example.cursojetpackcompose.states.MutableStateListOf
@@ -33,7 +34,7 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Components(){
-    MyScaffoldScreen()
+    ScaffoldScreenTopAppBar()
 }
 
 @Preview(showBackground = true)
