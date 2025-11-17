@@ -17,6 +17,7 @@ import com.example.cursojetpackcompose.seccion15.NavigationDrawer
 import com.example.cursojetpackcompose.seccion15.NavigationRail
 import com.example.cursojetpackcompose.seccion15.PaddingValues
 import com.example.cursojetpackcompose.seccion15.ScaffoldScreenTopAppBar
+import com.example.cursojetpackcompose.seccion15.ScrollTabRow
 import com.example.cursojetpackcompose.seccion15.TabRow
 import com.example.cursojetpackcompose.states.CounterLifeCycle
 import com.example.cursojetpackcompose.states.CounterScreen
@@ -43,7 +44,7 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Components(){
-    TabRow()
+    ScrollTabRow()
 }
 
 @Preview(showBackground = true)
