@@ -69,7 +69,7 @@ fun MainScaffold(
             modifier = Modifier.fillMaxSize().padding(paddingValues), //Le meto el padding interno
             contentAlignment = Alignment.Center
         ){
-            Text(text = "Seccion: ${selectedSection}")
+            Text(text = "Seccion: $selectedSection")
         }
     }
 }
