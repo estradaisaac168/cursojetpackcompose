@@ -22,6 +22,7 @@ import com.example.cursojetpackcompose.seccion15.TabRow
 import com.example.cursojetpackcompose.section16.NavControllerNavHost
 import com.example.cursojetpackcompose.section16.NavigationBarWithNavController
 import com.example.cursojetpackcompose.section16.NavigationReturnParameter
+import com.example.cursojetpackcompose.section19.view.ProductScreen
 import com.example.cursojetpackcompose.states.CounterLifeCycle
 import com.example.cursojetpackcompose.states.CounterScreen
 import com.example.cursojetpackcompose.states.MutableStateListOf
@@ -47,7 +48,7 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Components(){
-    NavigationReturnParameter()
+    ProductScreen()
 }
 
 @Preview(showBackground = true)
